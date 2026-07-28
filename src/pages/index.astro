@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/sections/Header.astro';
+import Timeline from '../components/sections/Timeline.astro';
+import Background from '../components/sections/Background.astro';
+import Hero from '../components/sections/Hero.astro';
+import Skills from '../components/sections/Skills.astro';
+import Projects from '../components/sections/Projects.astro';
+import Experience from '../components/sections/Experience.astro';
+import Contact from '../components/sections/Contact.astro';
+---
+<Layout>
+    <Header />
+    <Timeline />
+    <Background />
+    <main style="position: relative; z-index: 1;">
+        <Hero />
+        <Skills />
+        <Projects />
+        <Experience />
+        <Contact />
+    </main>
+    <script src="../scripts/timelineObserver.ts"></script>
+</Layout>

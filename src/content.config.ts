@@ -9,6 +9,14 @@ const skills = defineCollection({
     }),
 });
 
+const projects = defineCollection({
+    loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
+    schema: zod.object({
+        title: zod.string().optional(),
+    }),
+});
+
 export const collections = {
     skills,
+    projects,
 };

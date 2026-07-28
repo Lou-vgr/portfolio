@@ -1,6 +1,90 @@
 ---
 import FlipCard from '../../components/card.tsx';
-import '../../styles/skill-card.scss';
-const myCards = [`<div style="background: rgba(34, 34, 34, 0.8); backdrop-filter: blur(10px); color: #fff; padding: 2rem; border-radius: 16px; height: 100%; border: 1px solid #444; display: flex; flex-direction: column; justify-content: space-between;"><h3>Project 1</h3><p>Project details.</p></div>`, `<div style="background: rgba(51, 51, 51, 0.8); backdrop-filter: blur(10px); color: #fff; padding: 2rem; border-radius: 16px; height: 100%; border: 1px solid #555; display: flex; flex-direction: column; justify-content: space-between;"><h3>Project 2</h3><p>Project details.</p></div>`];
+import { getCollection } from 'astro:content';
+import '../../styles/project-card.scss';
+
+const projectsEntries = await getCollection('projects');
+const projectEntry = projectsEntries[0];
+const bodyContent = projectEntry ? projectEntry.body ?? '' : '';
+
+const rawProjects = bodyContent.split(/(?=^# )/gm).filter(Boolean);
+
+const myCards = rawProjects.map((rawProject) => {
+    const lines = rawProject.split('\n');
+
+    let title = 'Project';
+    let description = '';
+    let technologies: string[] = [];
+    let link: string | null = null;
+    let github: string | null = null;
+
+    for (const line of lines) {
+        const trimmed = line.trim();
+        if (trimmed.startsWith('# ')) {
+            title = trimmed.replace('# ', '').trim();
+        } else if (trimmed.startsWith('* Description:')) {
+            description = trimmed.replace('* Description:', '').trim();
+        } else if (trimmed.startsWith('* Technologies:')) {
+            const techStr = trimmed.replace('* Technologies:', '').trim();
+            technologies = techStr.split(',').map((t) => t.trim()).filter(Boolean);
+        } else if (trimmed.startsWith('* Link:')) {
+            const val = trimmed.replace('* Link:', '').trim();
+            link = val.toLowerCase() === 'null' || val === '' ? null : val;
+        } else if (trimmed.startsWith('* Github:')) {
+            const val = trimmed.replace('* Github:', '').trim();
+            github = val.toLowerCase() === 'null' || val === '' ? null : val;
+        }
+    }
+
+    const techListHtml = technologies
+        .map((tech) => `<li>${tech}</li>`)
+        .join('');
+
+    const linkHtml = link
+        ? `<a href="${link}" target="_blank" rel="noopener noreferrer" class="project-link" onclick="event.stopPropagation()">Live Demo</a>`
+        : `<span class="project-private">Not deployed or private</span>`;
+
+    const githubHtml = github
+        ? `<a href="${github}" target="_blank" rel="noopener noreferrer" class="project-link" onclick="event.stopPropagation()">GitHub</a>`
+        : `<span class="project-private">Private Repo</span>`;
+
+    return `
+        <div class="skill-card-content">
+            <h3 class="skill-title">${title}</h3>
+            <p class="project-desc">${description}</p>
+            <div class="project-tech-section">
+                <ul class="tech-grid">
+                    ${techListHtml}
+                </ul>
+            </div>
+            <div class="external-project-links" onclick="event.stopPropagation()">
+                ${linkHtml}
+                ${githubHtml}
+            </div>
+        </div>
+    `;
+});
 ---
-<section id="projects" class="card-section"><div class="card-wrapper"><FlipCard client:load cards={myCards} /></div></section>
+<section id="projects" class="card-section">
+    <div class="card-wrapper" id="projects-wrapper">
+        <FlipCard client:load cards={myCards} />
+    </div>
+    <div class="hint-pulse" id="project-hint">
+        Click on the card to discover other projects
+    </div>
+</section>
+
+<script>
+    const wrapper = document.getElementById('projects-wrapper');
+    const hint = document.getElementById('project-hint');
+
+    if (wrapper && hint) {
+        const hideHint = () => {
+            hint.style.opacity = '0';
+            hint.style.visibility = 'hidden';
+            wrapper.removeEventListener('click', hideHint);
+        };
+
+        wrapper.addEventListener('click', hideHint, { once: true });
+    }
+</script>

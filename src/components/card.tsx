@@ -71,7 +71,12 @@ export default function FlipCard(props: FlipCardProps) {
     setAngle(nextAngle);
   };
 
-  const onClick = (e: MouseEvent<HTMLDivElement>) => {
+  const handleCardClick = (e: MouseEvent<HTMLDivElement>) => {
+    const target = e.target as HTMLElement;
+    if (target.closest("a") || target.closest("button") || target.closest(".external-project-links") || target.closest(".project-link") || target.closest(".project-private")) {
+      return;
+    }
+
     const rect = e.currentTarget.getBoundingClientRect();
     const isLeft = e.clientX - rect.left < rect.width / 2;
     flip(isLeft ? -1 : 1);
@@ -123,7 +128,6 @@ export default function FlipCard(props: FlipCardProps) {
         ref={tiltRef}
         onMouseMove={onMove}
         onMouseLeave={onLeave}
-        onClick={onClick}
         style={{
           position: "relative",
           width: "100%",
@@ -144,13 +148,21 @@ export default function FlipCard(props: FlipCardProps) {
           }}
         >
           <div 
-            style={faceStyle}
+            onClick={handleCardClick}
+            style={{
+              ...faceStyle,
+              zIndex: facing(angle) === "a" ? 2 : 1,
+              pointerEvents: facing(angle) === "a" ? "auto" : "none",
+            }}
             dangerouslySetInnerHTML={{ __html: cards[faces.a % cards.length] }}
           />
           <div
+            onClick={handleCardClick}
             style={{
               ...faceStyle,
               transform: "rotateY(180deg)",
+              zIndex: facing(angle) === "b" ? 2 : 1,
+              pointerEvents: facing(angle) === "b" ? "auto" : "none",
             }}
             dangerouslySetInnerHTML={{ __html: cards[faces.b % cards.length] }}
           />

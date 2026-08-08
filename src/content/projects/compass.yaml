@@ -1,0 +1,10 @@
+title: "Compass"
+order: 1
+description: "A modern, high-performance personal portfolio built with Astro and React featuring dynamic content collections."
+technologies:
+  - "Astro"
+  - "React"
+  - "SCSS"
+  - "TypeScript"
+link: "https://www.test.com"
+github: "https://github.com/Lou-vgr/portfolio"

@@ -1,0 +1,17 @@
+title: "Software Developer Intern"
+company: "Dalim Software"
+location: "Kehl, Germany"
+team: "Customer Service Team"
+period: "4 Months"
+description: >
+  Contributed to customer service engineering by developing interactive web dashboards 
+  and automation scripts during a 4-month international internship.
+technologies:
+  - "JavaScript"
+  - "GraphQL"
+  - "Python"
+  - "Shell"
+missions:
+  - "Interactive Dashboards: Made data visualization dashboards using JavaScript and GraphQL APIs to optimize customer operations."
+  - "Process Automation: Developed Python and Shell automation scripts to optimize data processing pipelines and repetitive tasks."
+  - "International Collaboration: Worked with an engineering team in Kehl, Germany to resolve technical customer queries and refine tooling."

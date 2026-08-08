@@ -1,0 +1,10 @@
+title: "DevOps"
+items:
+  - name: "Docker"
+    score: 8
+  - name: "Git / GitHub / GitLab"
+    score: 9
+  - name: "Linux / Shell"
+    score: 8
+  - name: "CI / CD"
+    score: 8

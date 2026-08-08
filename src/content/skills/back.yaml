@@ -1,0 +1,10 @@
+title: "Backend"
+items:
+  - name: "Node.js / Express"
+    score: 8
+  - name: "Python / FastAPI"
+    score: 8
+  - name: "PostgreSQL"
+    score: 8
+  - name: "GraphQL"
+    score: 7

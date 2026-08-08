@@ -1,0 +1,10 @@
+title: "Frontend"
+items:
+  - name: "React / Next.js"
+    score: 9
+  - name: "TypeScript"
+    score: 8
+  - name: "Tailwind CSS"
+    score: 9
+  - name: "Astro"
+    score: 8

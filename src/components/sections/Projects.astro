@@ -4,37 +4,10 @@ import { getCollection } from 'astro:content';
 import '../../styles/project-card.scss';
 
 const projectsEntries = await getCollection('projects');
-const projectEntry = projectsEntries[0];
-const bodyContent = projectEntry ? projectEntry.body ?? '' : '';
+const sortedProjects = projectsEntries.sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
 
-const rawProjects = bodyContent.split(/(?=^# )/gm).filter(Boolean);
-
-const myCards = rawProjects.map((rawProject) => {
-    const lines = rawProject.split('\n');
-
-    let title = 'Project';
-    let description = '';
-    let technologies: string[] = [];
-    let link: string | null = null;
-    let github: string | null = null;
-
-    for (const line of lines) {
-        const trimmed = line.trim();
-        if (trimmed.startsWith('# ')) {
-            title = trimmed.replace('# ', '').trim();
-        } else if (trimmed.startsWith('* Description:')) {
-            description = trimmed.replace('* Description:', '').trim();
-        } else if (trimmed.startsWith('* Technologies:')) {
-            const techStr = trimmed.replace('* Technologies:', '').trim();
-            technologies = techStr.split(',').map((t) => t.trim()).filter(Boolean);
-        } else if (trimmed.startsWith('* Link:')) {
-            const val = trimmed.replace('* Link:', '').trim();
-            link = val.toLowerCase() === 'null' || val === '' ? null : val;
-        } else if (trimmed.startsWith('* Github:')) {
-            const val = trimmed.replace('* Github:', '').trim();
-            github = val.toLowerCase() === 'null' || val === '' ? null : val;
-        }
-    }
+const myCards = sortedProjects.map((entry) => {
+    const { title, description, technologies, link, github } = entry.data;
 
     const techListHtml = technologies
         .map((tech) => `<li>${tech}</li>`)

@@ -7,41 +7,33 @@ const skillsEntries = await getCollection('skills');
 
 const sortedIds = ['front', 'back', 'devops', 'soft'];
 const sortedSkills = sortedIds
-    .map(id => skillsEntries.find(entry => entry.id === id))
+    .map((id) => skillsEntries.find((entry) => entry.id === id))
     .filter((entry): entry is NonNullable<typeof entry> => entry !== undefined);
 
 const myCards = sortedSkills.map((entry) => {
-    const bodyContent = entry.body ?? '';
-    const lines = bodyContent.split('\n');
-    let rowsHtml = '';
+    const { title, items } = entry.data;
 
-    for (const line of lines) {
-        if (line.includes('|') && !line.includes('---') && !line.toLowerCase().includes('skill')) {
-            const parts = line.split('|').map(p => p.trim()).filter(Boolean);
-            if (parts.length >= 2) {
-                const name = parts[0];
-                const score = Number(parts[1]);
-                const percentage = score * 10;
-
-                rowsHtml += `
-                    <tr>
-                        <td style="padding: 0; border: none;">
-                            <div class="skill-row-container">
-                                <span class="skill-name">${name}</span>
-                                <div class="skill-bar-track">
-                                    <div class="skill-bar-fill" style="width: ${percentage}%;"></div>
-                                </div>
+    const rowsHtml = items
+        .map(({ name, score }) => {
+            const percentage = score * 10;
+            return `
+                <tr>
+                    <td style="padding: 0; border: none;">
+                        <div class="skill-row-container">
+                            <span class="skill-name">${name}</span>
+                            <div class="skill-bar-track">
+                                <div class="skill-bar-fill" style="width: ${percentage}%;"></div>
                             </div>
-                        </td>
-                    </tr>
-                `;
-            }
-        }
-    }
+                        </div>
+                    </td>
+                </tr>
+            `;
+        })
+        .join('');
 
     return `
         <div class="skill-card-content">
-            <h3>${entry.data.title}</h3>
+            <h3>${title}</h3>
             <table>
                 ${rowsHtml}
             </table>

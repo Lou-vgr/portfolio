@@ -1,6 +1,59 @@
 ---
 import FlipCard from '../../components/card.tsx';
-import '../../styles/skill-card.scss';
-const myCards = [`<div style="background: rgba(34, 34, 34, 0.8); backdrop-filter: blur(10px); color: #fff; padding: 2rem; border-radius: 16px; height: 100%; border: 1px solid #444; display: flex; flex-direction: column; justify-content: space-between;"><h3>Experience 1</h3><p>Internship details.</p></div>`, `<div style="background: rgba(51, 51, 51, 0.8); backdrop-filter: blur(10px); color: #fff; padding: 2rem; border-radius: 16px; height: 100%; border: 1px solid #555; display: flex; flex-direction: column; justify-content: space-between;"><h3>Experience 2</h3><p>Internship details.</p></div>`];
+import { getCollection } from 'astro:content';
+import '../../styles/experience-card.scss';
+
+const expEntries = await getCollection('experiences');
+
+const myCards = expEntries.map((entry) => {
+    const { title, company, location, team, period, description, technologies, missions } = entry.data;
+
+    const techListHtml = technologies
+        .map((tech) => `<li>${tech}</li>`)
+        .join('');
+
+    const missionsListHtml = missions
+        .map((mission) => `<li>${mission}</li>`)
+        .join('');
+
+    return `
+        <div class="experience-card-content">
+            <div class="exp-header">
+                <div>
+                    <h3 class="exp-title">${title}</h3>
+                    <div class="exp-meta">
+                        <span class="exp-company">${company}</span>
+                        <span class="exp-dot">•</span>
+                        <span class="exp-team">${team}</span>
+                    </div>
+                </div>
+                <div class="exp-badges">
+                    <span class="exp-badge exp-location">${location}</span>
+                    <span class="exp-badge exp-period">${period}</span>
+                </div>
+            </div>
+            
+            <div class="exp-body">
+                <p>${description}</p>
+                
+                <h3>Key Missions & Accomplishments</h3>
+                <ul>
+                    ${missionsListHtml}
+                </ul>
+            </div>
+            
+            <div class="project-tech-section">
+                <ul class="tech-grid">
+                    ${techListHtml}
+                </ul>
+            </div>
+        </div>
+    `;
+});
 ---
-<section id="experience" class="card-section"><div class="card-wrapper"><FlipCard client:load cards={myCards} /></div></section>
+
+<section id="experience" class="card-section">
+    <div class="card-wrapper" id="experience-wrapper">
+        <FlipCard client:load cards={myCards} />
+    </div>
+</section>

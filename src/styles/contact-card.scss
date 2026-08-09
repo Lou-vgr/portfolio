@@ -1,0 +1,228 @@
+.card-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    pointer-events: none;
+
+    .card-wrapper {
+        width: 100%;
+        max-width: 900px;
+        height: 500px;
+        pointer-events: auto;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.contact-card-content {
+    background: rgba(22, 22, 26, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    color: #fff;
+    padding: 2.2rem 2.4rem;
+    border-radius: 20px;
+    height: 100%;
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    overflow: hidden;
+
+    .contact-header {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        padding-bottom: 0.8rem;
+        margin-bottom: 1.2rem;
+        flex-shrink: 0;
+
+        .contact-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.35rem;
+            letter-spacing: 0.05em;
+            margin: 0 0 0.4rem 0;
+            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    }
+
+    .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.8rem;
+        flex-grow: 1;
+
+        @media (max-width: 768px) {
+            grid-template-columns: 1fr;
+            gap: 1.2rem;
+        }
+    }
+
+    .contact-method-group,
+    .cv-download-group {
+        display: flex;
+        flex-direction: column;
+
+        h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: rgba(255, 255, 255, 0.55);
+            margin: 0 0 0.8rem 0;
+        }
+    }
+
+    .contact-method-group {
+        gap: 0.7rem;
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+            padding: 0.65rem 0.9rem;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+            .icon-wrapper {
+                width: 36px;
+                height: 36px;
+                border-radius: 8px;
+                background: rgba(99, 102, 241, 0.12);
+                border: 1px solid rgba(168, 85, 247, 0.25);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #a5b4fc;
+                flex-shrink: 0;
+                transition: all 0.25s ease;
+            }
+
+            .contact-text {
+                display: flex;
+                flex-direction: column;
+                overflow: hidden;
+
+                .label {
+                    font-family: 'Inter', sans-serif;
+                    font-size: 0.75rem;
+                    color: rgba(255, 255, 255, 0.5);
+                    text-transform: uppercase;
+                    letter-spacing: 0.04em;
+                }
+
+                .value {
+                    font-family: 'Inter', sans-serif;
+                    font-size: 0.9rem;
+                    font-weight: 500;
+                    color: rgba(255, 255, 255, 0.95);
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                }
+            }
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.07);
+                border-color: rgba(168, 85, 247, 0.35);
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+
+                .icon-wrapper {
+                    background: rgba(99, 102, 241, 0.25);
+                    color: #ffffff;
+                    box-shadow: 0 0 12px rgba(168, 85, 247, 0.4);
+                }
+
+                .contact-text .value {
+                    color: #ffffff;
+                }
+            }
+        }
+    }
+
+    .cv-download-group {
+        gap: 0.7rem;
+
+        .cv-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+
+            .cv-button {
+                display: flex;
+                align-items: center;
+                padding: 0.75rem 1.1rem;
+                border-radius: 12px;
+                text-decoration: none;
+                font-family: 'Inter', sans-serif;
+                font-size: 0.9rem;
+                font-weight: 600;
+                letter-spacing: 0.02em;
+                transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+                .flag {
+                    font-size: 1.15rem;
+                    line-height: 1;
+                }
+
+                .btn-text {
+                    margin-left: 0.6rem;
+                    margin-right: auto;
+                }
+
+                .download-icon {
+                    opacity: 0.75;
+                    transition: transform 0.25s ease, opacity 0.25s ease;
+                }
+
+                &.cv-fr {
+                    background: rgba(255, 255, 255, 0.05);
+                    border: 1px solid rgba(255, 255, 255, 0.12);
+                    color: #ffffff;
+                    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+                    &:hover {
+                        background: rgba(255, 255, 255, 0.1);
+                        border-color: rgba(255, 255, 255, 0.25);
+                        transform: translateY(-2px);
+                        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+
+                        .download-icon {
+                            opacity: 1;
+                            transform: translateY(2px);
+                        }
+                    }
+                }
+
+                &.cv-en {
+                    background: linear-gradient(90deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+                    border: 1px solid rgba(255, 255, 255, 0.15);
+                    color: #ffffff;
+                    box-shadow: 0 4px 20px rgba(168, 85, 247, 0.35);
+
+                    &:hover {
+                        opacity: 0.95;
+                        transform: translateY(-2px);
+                        box-shadow: 0 8px 30px rgba(168, 85, 247, 0.55);
+
+                        .download-icon {
+                            opacity: 1;
+                            transform: translateY(2px);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

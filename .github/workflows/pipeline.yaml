@@ -2,9 +2,8 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches:
-      - '**'
     tags:
+      - 'check'
       - 'deploy'
 
 jobs:
@@ -31,7 +30,7 @@ jobs:
             echo "Branch validation skipped for main/dev."
           fi
 
-  lint-commits:
+  lint-commit:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -41,11 +40,9 @@ jobs:
       - name: Check commit message
         run: |
           LAST_COMMIT="${{ github.event.head_commit.message }}"
-          echo "Commit to check: $LAST_COMMIT"
+          COMMIT_REGEX="^(feat|fix|chore|test)\(.+\): .+$"
           
-          REGEX="^(feat|fix|chore|test)\(.+\): .+$"
-          
-          if [[ "$LAST_COMMIT" =~ $REGEX ]]; then
+          if [[ "$LAST_COMMIT" =~ $COMMIT_REGEX ]]; then
             echo "Commit format is valid."
           else
             echo "Commit format is invalid."
@@ -67,8 +64,8 @@ jobs:
           npm install
           npm run build
 
-  cd:
-    needs: [lint-branch, lint-commits, build]
+  deploy:
+    needs: [lint-branch, lint-commit, build]
     runs-on: ubuntu-latest
     if: github.ref == 'refs/tags/deploy'
 

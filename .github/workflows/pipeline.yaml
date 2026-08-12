@@ -68,7 +68,7 @@ jobs:
           npm run build
 
   cd:
-    needs: [lint-commits, build]
+    needs: [lint-branch, lint-commits, build]
     runs-on: ubuntu-latest
     if: github.ref == 'refs/tags/deploy'
 

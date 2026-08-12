@@ -8,38 +8,54 @@ on:
       - 'deploy'
 
 jobs:
-  ci:
+  lint-commits:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Check commit message
+        run: |
+          LAST_COMMIT="${{ github.event.head_commit.message }}"
+          echo "Commit to check: $LAST_COMMIT"
+          
+          REGEX="^(feat|fix|chore|test)\(.+\): .+$"
+          
+          if [[ "$LAST_COMMIT" =~ $REGEX ]]; then
+            echo "Commit format is valid."
+          else
+            echo "Commit format is invalid."
+            echo "Expected format: type(scope): message (allowed types: feat, fix, chore, test)"
+            exit 1
+          fi
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
         with:
           node-version: '22'
           cache: 'npm'
 
-      - name: Build
-        run: |
+      - run: |
           npm install
           npm run build
 
   cd:
-    needs: ci
+    needs: [lint-commits, build]
     runs-on: ubuntu-latest
     if: github.ref == 'refs/tags/deploy'
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Push code to main
-        uses: EndBug/add-and-commit@v9
+      - uses: EndBug/add-and-commit@v9
         with:
           default_author: github_actions
-          message: 'chore: sync branch to main via deploy tag'
+          message: 'chore(cd): sync branch to main via deploy tag [skip ci]'
           new_branch: main

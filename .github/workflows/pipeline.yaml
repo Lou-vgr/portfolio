@@ -5,26 +5,28 @@ on:
     branches:
       - main
       - dev
-  workflow_dispatch:
 
 jobs:
-  lint-commit:
+  check-pr-title:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 1
 
-      - name: Check commit message
+      - name: Check PR title
         run: |
-          LAST_COMMIT="${{ github.event.head_commit.message }}"
+          MESSAGE="${{ github.event.pull_request.title }}"
+          echo "Analyzed text: '$MESSAGE'"
+
           COMMIT_REGEX="^(feat|fix|chore|test)\(.+\): .+$"
           
-          if [[ "$LAST_COMMIT" =~ $COMMIT_REGEX ]]; then
-            echo "Commit format is valid."
+          if [[ "$MESSAGE" =~ $COMMIT_REGEX ]]; then
+            echo "Format is valid."
           else
-            echo "Commit format is invalid."
-            echo "Expected format: type(scope): message (allowed types: feat, fix, chore, test)"
+            echo "Format is invalid."
+            echo "Expected format: type(scope): message"
+            echo "Allowed types: feat, fix, chore, test"
             exit 1
           fi
 

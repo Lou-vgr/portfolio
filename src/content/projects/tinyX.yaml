@@ -1,0 +1,17 @@
+title: "TinyX"
+order: 2
+description: > 
+  Design and implementation of a distributed multi-service micro-blogging platform built by a team of 14 students over a 2-month period, following Domain Driven Design principles.
+  Developed in Java with Quarkus, leveraging Neo4j, MongoDB, and ElasticSearch for tailored data management across services, with asynchronous messaging handled via Redis.
+  The project encompasses creating a full suite of REST endpoints, full-text search capabilities, and automated asynchronous timeline updates.
+  Complete system artifacts are packaged for deployment on a K3S Kubernetes cluster using Kustomize.
+technologies:
+  - "Kubernetes / Kustomize"
+  - "ElasticSearch"
+  - "Quarkus"
+  - "MongoDB"
+  - "Redis"
+  - "Docker"
+  - "GitLab"
+link: null
+github: null

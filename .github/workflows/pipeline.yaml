@@ -7,29 +7,6 @@ on:
       - 'deploy'
 
 jobs:
-  lint-branch:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 1
-
-      - name: Check branch name
-        run: |
-          BRANCH_NAME="${{ github.ref_name }}"
-          BRANCH_REGEX="^(feat|fix|chore|test)/.+$"
-          
-          if [[ "$BRANCH_NAME" != "main" && "$BRANCH_NAME" != "dev" ]]; then
-            if [[ ! "$BRANCH_NAME" =~ $BRANCH_REGEX ]]; then
-              echo "Invalid branch name: '$BRANCH_NAME'"
-              echo "Expected format: type/name (allowed types: feat, fix, chore, test)"
-              exit 1
-            fi
-            echo "Branch name is valid."
-          else
-            echo "Branch validation skipped for main/dev."
-          fi
-
   lint-commit:
     runs-on: ubuntu-latest
     steps:
@@ -65,7 +42,7 @@ jobs:
           npm run build
 
   deploy:
-    needs: [lint-branch, lint-commit, build]
+    needs: [lint-commit, build]
     runs-on: ubuntu-latest
     if: github.ref == 'refs/tags/deploy'
 

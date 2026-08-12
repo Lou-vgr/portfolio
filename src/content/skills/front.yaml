@@ -1,10 +1,14 @@
 title: "Frontend"
 items:
-  - name: "React / Next.js"
-    score: 9
-  - name: "TypeScript"
-    score: 8
-  - name: "Tailwind CSS"
-    score: 9
+  - name: "React"
+    score: 6
+  - name: "HTML / CSS / SCSS"
+    score: 6
+  - name: "Angular"
+    score: 7
   - name: "Astro"
-    score: 8
+    score: 5
+  - name: "Kotlin / Android"
+    score: 6
+  - name: "Swift / SwiftUI"
+    score: 5

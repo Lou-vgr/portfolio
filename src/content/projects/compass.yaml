@@ -1,10 +1,14 @@
 title: "Compass"
 order: 1
-description: "A modern, high-performance personal portfolio built with Astro and React featuring dynamic content collections."
+description: >
+  Community web application designed to connect companies and schools via an
+  interactive graph. We are building this project over a year in a team of 4 people, using
+  Quarkus and Angular with PostgreSQL and Neo4j.
 technologies:
-  - "Astro"
-  - "React"
-  - "SCSS"
-  - "TypeScript"
-link: "https://www.test.com"
-github: "https://github.com/Lou-vgr/portfolio"
+  - "Quarkus"
+  - "Angular"
+  - "PostgreSQL"
+  - "Neo4J"
+  - "Docker"
+link: null
+github: null

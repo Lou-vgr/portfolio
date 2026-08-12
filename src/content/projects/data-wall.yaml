@@ -1,10 +1,17 @@
 title: "Data Wall"
 order: 3
-description: "A modern, high-performance personal portfolio built with Astro and React featuring dynamic content collections."
+description: >
+  Solution enabling touch interaction on a wall-projected screen to create health-themed quizzes and a serious game. We are carrying out this project as a team of 4
+  over 8 months, starting from the design phase with the writing of specifications up to
+  final deployment, including sensor processing and the technical implementation of
+  the web platform and Unity modules.
 technologies:
-  - "Astro"
+  - "Unity"
   - "React"
-  - "SCSS"
-  - "TypeScript"
+  - "NestJS"
+  - "Docker"
+  - "TUIO"
+  - "Claranet"
+  - "GitHub"
 link: null
 github: null

@@ -1,10 +1,17 @@
 title: "Backend"
 items:
-  - name: "Node.js / Express"
-    score: 8
-  - name: "Python / FastAPI"
+  - name: "Node.js"
     score: 8
   - name: "PostgreSQL"
-    score: 8
-  - name: "GraphQL"
     score: 7
+  - name: "GraphQL"
+    score: 4
+  - name: "Quarkus"
+    score: 7
+  - name: "ElasticSearch"
+    score: 3
+  - name: ".NET"
+    score: 5
+  - name: "Neo4j"
+    score: 3
+  

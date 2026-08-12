@@ -1,10 +1,14 @@
 title: "Soft Skills"
 items:
-  - name: "Team Leadership"
+  - name: "Autonomous"
     score: 9
-  - name: "Problem Solving"
-    score: 9
-  - name: "Agile / Scrum"
+  - name: "Teamwork"
+    score: 7
+  - name: "Adaptability"
     score: 8
-  - name: "Communication"
-    score: 9
+  - name: "Project Management"
+    score: 7
+  - name: "Proactive"
+    score: 8
+  - name: "Problem Solving"
+    score: 8

@@ -1,11 +1,11 @@
 # Portfolio
 
-A modern, high-performance personal portfolio built with **Astro**, **React**, and **SCSS**, featuring dynamic collections and interactive components.
+Personal portfolio built with **Astro**, **React**, and **SCSS**, featuring dynamic collections and interactive components.
 
 ## 🚀 Features
 
 * **Astro Framework:** Blazing fast static site generation with zero JavaScript by default.
-* **Content Collections:** Structured and type-safe markdown/content management.
+* **Content Collections:** Structured and type-safe yaml/content management.
 * **Interactive UI:** Custom React components for smooth user experiences.
 * **Responsive Design:** Fully optimized layout for mobile, tablet, and desktop viewports.
 * **Modern Styling:** SCSS styling with glassmorphism effects and custom animations.

@@ -1,0 +1,13 @@
+title: "VPS"
+order: 5
+description: >
+  Hosting and administration of services on a personal VPS in order to master the entire
+  deployment chain (CI/CD).
+technologies:
+  - "Linux"
+  - "Coolify"
+  - "Docker"
+  - "Cloudflare"
+  - "Caddy"  
+link: null
+github: null

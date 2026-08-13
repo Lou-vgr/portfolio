@@ -40,7 +40,7 @@ const myCards = sortedProjects.map((entry) => {
 ---
 <section id="projects" class="card-section">
     <div class="card-wrapper" id="projects-wrapper">
-        <FlipCard client:load cards={myCards} />
+        <FlipCard client:visible cards={myCards} />
     </div>
     <div class="hint-pulse" id="project-hint">
         Click on the card to discover other projects

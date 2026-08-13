@@ -1,10 +1,10 @@
 title: "Portfolio"
 order: 4
-description: "A modern, personal portfolio built with Astro and React featuring dynamic content collections."
+description: "Personal portfolio built with Astro and React featuring dynamic content collections."
 technologies:
   - "Astro"
   - "React"
   - "SCSS"
   - "TypeScript"
 link: "https://portfolio.devpyx.com"
-github: "https://github.com/Lou-vgr/portfolio"
+github: null

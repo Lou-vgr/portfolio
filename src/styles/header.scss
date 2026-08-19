@@ -6,7 +6,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem 2.5rem;
+    padding: clamp(0.9rem, 2vw, 1.4rem) clamp(1.2rem, 4vw, 2.5rem);
     z-index: 100;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -19,16 +19,12 @@
         font-weight: 700;
         color: #ffffff;
         text-decoration: none;
-        font-size: 1.1rem;
+        font-size: clamp(0.95rem, 2vw, 1.1rem);
         letter-spacing: 0.08em;
         transition: opacity 0.2s ease;
 
         &:hover {
             opacity: 0.8;
         }
-    }
-
-    @media (max-width: 768px) {
-        padding: 1.2rem 1.5rem;
     }
 }

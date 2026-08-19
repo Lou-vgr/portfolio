@@ -122,6 +122,7 @@ export default function FlipCard(props: FlipCardProps) {
         justifyContent: "center",
         perspective: `${PERSPECTIVE}px`,
         cursor: cards.length > 1 ? "pointer" : "default",
+        touchAction: "pan-y",
       }}
     >
       <div
@@ -135,6 +136,7 @@ export default function FlipCard(props: FlipCardProps) {
           transformStyle: "preserve-3d",
           transition: "transform 0.2s ease-out",
           willChange: "transform",
+          touchAction: "pan-y",
         }}
       >
         <motion.div

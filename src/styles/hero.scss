@@ -8,9 +8,11 @@ $glass-hover-border: rgba(255, 255, 255, 0.3);
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    padding: 20px;
+    min-height: 100vh;
+    padding: clamp(60px, 10vh, 100px) 16px 20px;
+    box-sizing: border-box;
     pointer-events: none;
+    width: 100%;
 
     .hero-content {
         display: flex;
@@ -18,29 +20,34 @@ $glass-hover-border: rgba(255, 255, 255, 0.3);
         align-items: center;
         text-align: center;
         width: 100%;
+        max-width: 1200px;
         pointer-events: auto;
 
         .hero-title-wrapper {
-            height: 110px;
+            height: clamp(70px, 14vw, 130px);
             width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .hero-subtitle {
             font-family: 'Inter', sans-serif;
-            font-size: 1.15rem;
+            font-size: clamp(0.85rem, 2.4vw, 1.15rem);
             font-weight: 400;
-            letter-spacing: 0.1em;
+            letter-spacing: clamp(0.04em, 0.5vw, 0.1em);
             color: rgba(255, 255, 255, 0.7);
-            margin: 0;
+            margin: 0.5rem 0 0 0;
             text-transform: uppercase;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            padding: 0 8px;
 
             .epita-badge {
                 display: inline-block;
                 background: $glass-bg;
                 border: 1px solid $glass-border;
                 color: #ffffff;
-                padding: 0.2rem 0.4rem;
+                padding: 0.2rem 0.5rem;
                 border-radius: 8px;
                 text-decoration: none;
                 font-weight: 600;

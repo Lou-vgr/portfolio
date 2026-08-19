@@ -195,7 +195,8 @@ export default function MeshText(props: Props) {
     const fontVariant = font?.variant ?? "Regular"
     
     const baseFontSize = toNum(font?.fontSize, 180)
-    const fontSize = windowWidth > 0 ? Math.min(baseFontSize, windowWidth * 0.08) : baseFontSize
+    const maxCalculated = windowWidth > 0 ? Math.min(baseFontSize, Math.max(16, (windowWidth * 0.92) / ((text?.length || 15) * 0.65))) : baseFontSize
+    const fontSize = Math.min(baseFontSize, maxCalculated)
 
     const fontWeight = toNum(font?.fontWeight, variantToWeight(fontVariant))
     const fontStyle = font?.fontStyle ?? (variantIsItalic(fontVariant) ? "italic" : "normal")
